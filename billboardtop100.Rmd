@@ -12,10 +12,10 @@ library(tidyverse)
 ```
 
 
-```{r, echo = FALSE}
+```{r clean_data, echo = FALSE}
 x <- wiki_hot_100s |> 
   as_tibble() |> 
-  mutate(year = as.numeric(year)) 
+  mutate(year = parse_number(year)) 
 ```
 
 
@@ -40,12 +40,13 @@ temp2 <- x |>
 
 ```{r, echo = FALSE}
 #how many distinct artists in a year?
-distinct <- x |> 
+x |> 
   group_by(year) |> 
   distinct(artist) |> 
-  summarize(unique = n()) |> 
-  arrange(unique)
+  summarize(distinct_artists = n()) |> 
+  ggplot(aes(x = year, 
+             y = distinct_artists)) + 
+    geom_point()
+
 ```
-
-
 
