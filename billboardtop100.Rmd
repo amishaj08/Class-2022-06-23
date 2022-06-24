@@ -1,7 +1,6 @@
 ---
 title: "Billboard"
 author: "Amisha Jain"
-date: '2022-06-21'
 output: html_document
 ---
 
@@ -45,8 +44,12 @@ x |>
   distinct(artist) |> 
   summarize(distinct_artists = n()) |> 
   ggplot(aes(x = year, 
-             y = distinct_artists)) + 
-    geom_point()
+             y = distinct_artists, fill = year)) + 
+    geom_point(alpha = .5) + 
+  theme_classic() +
+  labs(title = "Number of Distinct Artists per Year", 
+       x = "Year", y = "Number of Distinct Artists", 
+       caption= "Source: Wiki_hot_100s")
 
 ```
 
