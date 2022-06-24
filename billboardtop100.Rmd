@@ -38,18 +38,13 @@ temp2 <- x |>
 ```
 
 
-```{r}
+```{r, echo = FALSE}
 #how many distinct artists in a year?
 distinct <- x |> 
   group_by(year) |> 
   distinct(artist) |> 
   summarize(unique = n()) |> 
   arrange(unique)
-```
-
-```{r}
-
-
 ```
 
 
