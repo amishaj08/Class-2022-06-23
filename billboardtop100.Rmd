@@ -6,10 +6,11 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(billboard)
 library(tidyverse)
 ```
+
 
 ```{r, echo = FALSE}
 x <- wiki_hot_100s |> 
@@ -17,13 +18,17 @@ x <- wiki_hot_100s |>
   mutate(year = as.numeric(year)) 
 ```
 
+
 ```{r, echo = FALSE}
 #some artists appear differently. See `N Sync.
+#Which artist appears the most?
 temp <- x |> 
   group_by(artist) |> 
   summarise(freq = n()) |> 
   arrange(desc(freq))
 ```
+
+
 
 ```{r, echo = FALSE}
 temp2 <- x |> 
@@ -34,9 +39,18 @@ temp2 <- x |>
 
 
 ```{r}
-x |> 
+#how many distinct artists in a year?
+distinct <- x |> 
   group_by(year) |> 
   distinct(artist) |> 
-  summarize(unique = )
-  
+  summarize(unique = n()) |> 
+  arrange(unique)
 ```
+
+```{r}
+
+
+```
+
+
+
